@@ -5,21 +5,32 @@ import { createStackNavigator } from "@react-navigation/stack";
 import NotificationsPage from "./pages/Notifications";
 import CameraPage from "./pages/Camera";
 import LocationPage from "./pages/Location";
+import BasicListScreen from "./BasicListScreen.js";
 
 function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
+    <View
+      style={{
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+      }}
+    >
       <Button
-        title="Go to 1"
+        title="Notifications"
         onPress={() => navigation.navigate("NotificationsPage")}
       />
       <Button
-        title="Go to 2"
+        title="Camera"
         onPress={() => navigation.navigate("CameraPage")}
       />
       <Button
-        title="Go to 3"
+        title="Location"
         onPress={() => navigation.navigate("LocationPage")}
       />
     </View>
@@ -36,6 +47,7 @@ function App() {
         <Stack.Screen name="NotificationsPage" component={NotificationsPage} />
         <Stack.Screen name="CameraPage" component={CameraPage} />
         <Stack.Screen name="LocationPage" component={LocationPage} />
+        <Stack.Screen name="BasicListScreen" component={BasicListScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
