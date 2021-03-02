@@ -1,56 +1,41 @@
 import * as React from "react";
-import { Button, View, Text } from "react-native";
+import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import NotificationsPage from "./pages/Notifications";
 import CameraPage from "./pages/Camera";
 import LocationPage from "./pages/Location";
-import BasicListScreen from "./BasicListScreen.js";
+import BasicListScreen from "./BasicListScreen";
 
-function HomeScreen({ navigation }) {
+function HomeScreen() {
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-      }}
-    >
-      <Button
-        title="Notifications"
-        onPress={() => navigation.navigate("NotificationsPage")}
-      />
-      <Button
-        title="Camera"
-        onPress={() => navigation.navigate("CameraPage")}
-      />
-      <Button
-        title="Location"
-        onPress={() => navigation.navigate("LocationPage")}
-      />
+    <BasicListScreen></BasicListScreen>
+    // <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    //   <Text>Home!</Text>
+    // </View>
+  );
+}
+
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Settings!</Text>
     </View>
   );
 }
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-function App() {
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="NotificationsPage" component={NotificationsPage} />
-        <Stack.Screen name="CameraPage" component={CameraPage} />
-        <Stack.Screen name="LocationPage" component={LocationPage} />
-        <Stack.Screen name="BasicListScreen" component={BasicListScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Notifications" component={NotificationsPage} />
+        <Tab.Screen name="Camera" component={CameraPage} />
+        <Tab.Screen name="Location" component={LocationPage} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-export default App;
