@@ -8,7 +8,10 @@ import NotificationsPage from "./pages/Notifications";
 import CameraPage from "./pages/Camera";
 import LocationPage from "./pages/Location";
 import HomeScreen from "./pages/HomeScreen";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import GyroPage from "./pages/Gyro";
+import AccelerometerPage from "./pages/Accelerometer";
+
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 
@@ -48,6 +51,8 @@ export default function App() {
           <Tab.Screen name="Notifications" component={NotificationsPage} />
           <Tab.Screen name="Camera" component={CameraPage} />
           <Tab.Screen name="Location" component={LocationPage} />
+          <Tab.Screen name="Gyro" component={GyroPage} />
+          <Tab.Screen name="ACC" component={AccelerometerPage} />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
