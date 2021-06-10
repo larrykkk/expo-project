@@ -8,29 +8,21 @@ import {
   ListItem,
   Text,
 } from "react-native-ui-lib"; //eslint-disable-line
-// import orders from "../../data/orders";
-// import MapView from "react-native-maps";
-// import { NavigationContainer } from "@reac t-navigation/native";
 
 export default class BasicListScreen extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       data: [],
       isLoading: false,
     };
   }
 
-  keyExtractor = (item) => item.stationNo;
-
   componentDidMount() {
     fetch("https://tinyurl.com/y4utsed3")
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
         this.setState({ data: json.data });
-        console.log(this.state.data);
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -38,10 +30,7 @@ export default class BasicListScreen extends Component {
       });
   }
 
-  renderRow(row, id) {
-    console.log(this.props.navigation);
-    // const statusColor =
-    //   row.inventory.status === "Paid" ? Colors.green30 : Colors.red30;
+  renderRow(row) {
     const animationProps = AnimatableManager.presets.fadeInRight;
     const imageAnimationProps = AnimatableManager.getRandomDelay();
 
@@ -99,10 +88,9 @@ export default class BasicListScreen extends Component {
       </Animatable.View>
     );
   }
+  keyExtractor = (item) => item.stationNo;
 
   render() {
-    // const { navigation } = this.props;
-    // console.log(navigation);
     return (
       <FlatList
         data={this.state.data}

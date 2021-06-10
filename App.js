@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -16,25 +16,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    async function getMoviesFromApi() {
-      try {
-        let response = await fetch("https://reactnative.dev/movies.json");
-        let responseJson = await response.json();
-        setData(responseJson.movies);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    getMoviesFromApi();
-  }, []);
-
   return (
     <SafeAreaProvider>
-      {/* <CameraPage></CameraPage> */}
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
