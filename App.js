@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -9,25 +9,27 @@ import LocationPage from "./pages/Location";
 import HomeScreen from "./pages/HomeScreen";
 import SensorPage from "./pages/SensorPage";
 import SettingPage from "./pages/Setting";
+import Map from "./pages/Map";
 
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const [data, setData] = useState();
+
   useEffect(() => {
     async function getMoviesFromApi() {
       try {
         let response = await fetch("https://reactnative.dev/movies.json");
         let responseJson = await response.json();
-        return responseJson.movies;
+        setData(responseJson.movies);
       } catch (error) {
         console.error(error);
       }
     }
 
-    const res = getMoviesFromApi();
-    console.log(res);
+    getMoviesFromApi();
   }, []);
 
   return (
@@ -77,6 +79,7 @@ export default function App() {
           <Tab.Screen name="定位" component={LocationPage} />
           <Tab.Screen name="感應器" component={SensorPage} />
           <Tab.Screen name="設定" component={SettingPage} />
+          <Tab.Screen name="Map" component={Map} />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

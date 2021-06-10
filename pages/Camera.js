@@ -88,7 +88,6 @@ export default function CameraPage() {
   _takePictureButtonPressed = async () => {
     if (camera) {
       const photo = await camera.takePictureAsync();
-      console.log({ photo });
       setPhoto(photo);
       downloadFile(photo.uri);
     }

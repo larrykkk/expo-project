@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/watermark_icon-icons.com_49331.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
